@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "title": "Nielsen Norman Group",
+    "description": "World leaders in research-based user experience. Articles, reports, and training on UX best practices.",
+    "category": "articles",
+    "url": "https://www.nngroup.com/articles/",
+    "badge": "Articles",
+    "icon": "📄"
+  },
+  {
+    "id": 2,
+    "title": "Smashing Magazine",
+    "description": "High-quality articles on web design, UX, and front-end development from industry experts.",
+    "category": "articles",
+    "url": "https://www.smashingmagazine.com/",
+    "badge": "Articles",
+    "icon": "📄"
+  },
+  {
+    "id": 3,
+    "title": "UX Collective",
+    "description": "Curated stories on UX, visual design, and product thinking. One of the largest Medium publications.",
+    "category": "articles",
+    "url": "https://uxdesign.cc/",
+    "badge": "Articles",
+    "icon": "📄"
+  },
+  {
+    "id": 4,
+    "title": "Figma YouTube Channel",
+    "description": "Official tutorials, design tips, and community showcases from the Figma team. New content weekly.",
+    "category": "videos",
+    "url": "https://www.youtube.com/c/Figma",
+    "badge": "Videos",
+    "icon": "🎥"
+  },
+  {
+    "id": 5,
+    "title": "Flux Academy",
+    "description": "Web design tutorials and career advice for aspiring designers. Practical, project-based learning.",
+    "category": "videos",
+    "url": "https://www.youtube.com/c/FluxAcademy",
+    "badge": "Videos",
+    "icon": "🎥"
+  },
+  {
+    "id": 6,
+    "title": "DesignCourse",
+    "description": "Full courses on UI/UX design, CSS, and frontend development. Beginner-friendly tutorials.",
+    "category": "videos",
+    "url": "https://www.youtube.com/c/DesignCourse",
+    "badge": "Videos",
+    "icon": "🎥"
+  },
+  {
+    "id": 7,
+    "title": "Don't Make Me Think",
+    "description": "A classic book on web usability by Steve Krug. Essential reading for every UX designer.",
+    "category": "books",
+    "url": "https://sensible.com/dont-make-me-think/",
+    "badge": "Books",
+    "icon": "📚"
+  },
+  {
+    "id": 8,
+    "title": "The Design of Everyday Things",
+    "description": "Don Norman's masterpiece on the principles of user-centered design and cognitive psychology.",
+    "category": "books",
+    "url": "https://www.nngroup.com/books/design-everyday-things/",
+    "badge": "Books",
+    "icon": "📚"
+  },
+  {
+    "id": 9,
+    "title": "Refactoring UI",
+    "description": "Practical guide on designing beautiful user interfaces by the creators of Tailwind CSS.",
+    "category": "books",
+    "url": "https://www.refactoringui.com/",
+    "badge": "Books",
+    "icon": "📚"
+  },
+  {
+    "id": 10,
+    "title": "Figma",
+    "description": "The industry-standard collaborative design tool. Free for individuals with powerful features.",
+    "category": "tools",
+    "url": "https://www.figma.com/",
+    "badge": "Tools",
+    "icon": "🛠️"
+  },
+  {
+    "id": 11,
+    "title": "Coolors",
+    "description": "Generate beautiful color palettes for your design projects instantly. Export to Figma, Sketch, and more.",
+    "category": "tools",
+    "url": "https://coolors.co/",
+    "badge": "Tools",
+    "icon": "🛠️"
+  },
+  {
+    "id": 12,
+    "title": "Unsplash",
+    "description": "Free high-quality images for your designs. No attribution required. Extensive library.",
+    "category": "tools",
+    "url": "https://unsplash.com/",
+    "badge": "Tools",
+    "icon": "🛠️"
+  },
+  {
+    "id": 13,
+    "title": "Designer Hangout",
+    "description": "A Slack community with 20,000+ UX designers sharing knowledge, jobs, and opportunities.",
+    "category": "communities",
+    "url": "https://www.designerhangout.co/",
+    "badge": "Communities",
+    "icon": "👥"
+  },
+  {
+    "id": 14,
+    "title": "r/userexperience",
+    "description": "Reddit's largest UX community. Portfolio reviews, industry discussions, and career advice.",
+    "category": "communities",
+    "url": "https://www.reddit.com/r/userexperience/",
+    "badge": "Communities",
+    "icon": "👥"
+  },
+  {
+    "id": 15,
+    "title": "Dribbble",
+    "description": "Showcase and discover UI/UX design work. Great for inspiration and building your portfolio presence.",
+    "category": "communities",
+    "url": "https://dribbble.com/",
+    "badge": "Communities",
+    "icon": "👥"
+  }
+]
