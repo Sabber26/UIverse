@@ -238,15 +238,6 @@ function handleCheckboxChange(id, checked) {
   saveProgress();
   updateProgressBar();
   
-  // Show toast notification
-  const step = roadmapData.find(s => s.id === id);
-  if (step && typeof toast !== 'undefined') {
-    const message = checked 
-      ? `✅ "${step.title}" marked as completed!` 
-      : `"${step.title}" unmarked`;
-    toast.show(message, checked ? 'success' : 'info', 2000);
-  }
-  
   // Check if all steps completed
   checkAllCompleted();
 }
@@ -263,15 +254,12 @@ function saveProgress() {
         completed.push(step.id);
       }
     });
-    const success = StorageHelper.set('roadmapProgress', completed);
+  const success = StorageHelper.set('roadmapProgress', completed);
     if (success) {
       console.log('Progress saved successfully');
     }
   } catch (error) {
     ErrorLogger.log(error, 'Roadmap Save Progress');
-    if (typeof toast !== 'undefined') {
-      toast.error('Failed to save progress', 3000);
-    }
   }
 }
 
@@ -340,9 +328,6 @@ function checkAllCompleted() {
   
   if (completed === total) {
     triggerConfetti();
-    if (typeof toast !== 'undefined' && toast.success) {
-      toast.success('🎉 Congratulations! You completed the entire roadmap!', 5000);
-    }
   }
 }
 
@@ -396,9 +381,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         StorageHelper.remove('roadmapProgress');
         updateProgressBar();
-        if (typeof toast !== 'undefined') {
-          toast.info('Progress has been reset', 3000);
-        }
       }
     });
   }

@@ -7,16 +7,26 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('[Main] DOM ready, initializing...');
   PerformanceMonitor.start('page-init');
   
-  initTheme();
-  initMobileMenu();
-  initSmoothScroll();
-  initScrollSpy();
-  initScrollToTop();
-  initFadeInSections();
-  initCounters();
-  initKeyboardNavigation();
-  initOfflineIndicator();
-  setupEventDelegation();
+  // Hide loading spinner
+  const spinner = document.getElementById('loadingSpinner');
+  if (spinner) {
+    setTimeout(() => {
+      spinner.style.opacity = '0';
+      setTimeout(() => spinner.remove(), 500);
+    }, 300);
+  }
+  
+  // Initialize modules with error boundaries
+  try { initTheme(); } catch(e) { console.error('Theme init error:', e); }
+  try { initMobileMenu(); } catch(e) { console.error('Mobile menu init error:', e); }
+  try { initSmoothScroll(); } catch(e) { console.error('Smooth scroll init error:', e); }
+  try { initScrollSpy(); } catch(e) { console.error('Scroll spy init error:', e); }
+  try { initScrollToTop(); } catch(e) { console.error('Scroll to top init error:', e); }
+  try { initFadeInSections(); } catch(e) { console.error('Fade in init error:', e); }
+  try { initCounters(); } catch(e) { console.error('Counters init error:', e); }
+  try { initKeyboardNavigation(); } catch(e) { console.error('Keyboard nav init error:', e); }
+  try { initOfflineIndicator(); } catch(e) { console.error('Offline indicator init error:', e); }
+  try { setupEventDelegation(); } catch(e) { console.error('Event delegation init error:', e); }
   
   var initTime = PerformanceMonitor.end('page-init');
   PerformanceMonitor.log('Page Initialization', initTime);
@@ -63,10 +73,6 @@ function initTheme() {
     var success = StorageHelper.set('theme', isDark ? 'dark' : 'light');
     themeIcon.textContent = isDark ? '☀️' : '🌙';
     console.log('[Main] Theme now:', isDark ? 'dark' : 'light');
-    
-    if (success && typeof toast !== 'undefined' && toast.info) {
-      toast.info(isDark ? 'Dark mode enabled 🌙' : 'Light mode enabled ☀️', 2000);
-    }
   });
 
   // Listen for system theme changes
@@ -308,16 +314,10 @@ function initOfflineIndicator() {
 
   window.addEventListener('online', function() {
     indicator.classList.remove('visible');
-    if (typeof toast !== 'undefined' && toast.success) {
-      toast.success('Back online! 📡', 3000);
-    }
   });
 
   window.addEventListener('offline', function() {
     indicator.classList.add('visible');
-    if (typeof toast !== 'undefined' && toast.warning) {
-      toast.warning('You are offline. Some features may be limited.', 5000);
-    }
   });
 
   if (!navigator.onLine) {
@@ -336,9 +336,6 @@ function setupEventDelegation() {
       if (link.href && !isValidURL(link.href)) {
         e.preventDefault();
         console.warn('Blocked invalid external link:', link.href);
-        if (typeof toast !== 'undefined' && toast.error) {
-          toast.error('Invalid link detected', 3000);
-        }
       }
     }
   });

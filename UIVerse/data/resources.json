@@ -31,7 +31,7 @@
     "title": "Figma YouTube Channel",
     "description": "Official tutorials, design tips, and community showcases from the Figma team. New content weekly.",
     "category": "videos",
-    "url": "https://www.youtube.com/c/Figma",
+    "url": "https://www.youtube.com/@Figma",
     "badge": "Videos",
     "icon": "🎥"
   },
@@ -40,7 +40,7 @@
     "title": "Flux Academy",
     "description": "Web design tutorials and career advice for aspiring designers. Practical, project-based learning.",
     "category": "videos",
-    "url": "https://www.youtube.com/c/FluxAcademy",
+    "url": "https://www.youtube.com/@FluxAcademy",
     "badge": "Videos",
     "icon": "🎥"
   },
@@ -49,7 +49,7 @@
     "title": "DesignCourse",
     "description": "Full courses on UI/UX design, CSS, and frontend development. Beginner-friendly tutorials.",
     "category": "videos",
-    "url": "https://www.youtube.com/c/DesignCourse",
+    "url": "https://www.youtube.com/@DesignCourse",
     "badge": "Videos",
     "icon": "🎥"
   },

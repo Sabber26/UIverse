@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data/manifest.json">
+    <meta name="theme-color" content="#9333ea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="UIVerse">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="UIVerse - A free learning hub for beginners to master UI/UX design. Interactive roadmap, personality quiz, curated resources, and step-by-step guidance.">
+    <meta name="keywords" content="UI design, UX design, learn UI/UX, design tutorial, beginner designer, design roadmap, Figma tutorial, user experience, user interface">
+    <meta name="author" content="UIVerse">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="UIVerse — UI/UX Learning Hub for Beginners">
+    <meta property="og:description" content="Start your UI/UX design journey. Interactive roadmap, personality quiz, and curated resources — all free.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://uiverse.example.com">
+    <meta property="og:image" content="https://uiverse.example.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UIVerse — UI/UX Learning Hub for Beginners">
+    <meta name="twitter:description" content="Start your UI/UX design journey. Interactive roadmap, personality quiz, and curated resources — all free.">
+    <meta name="twitter:image" content="https://uiverse.example.com/og-image.png">
+    
+    <title>UIVerse — UI/UX Learning Hub for Beginners</title>
+    
+    <!-- Dark mode flash prevention - MUST be in head before content loads -->
+    <script>
+        (function() {
+            try {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
+                } else {
+                    document.documentElement.classList.add('light');
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch(e) {
+                // localStorage not available, continue with light mode
+            }
+        })();
+    </script>
+    
+    <!-- Performance: Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    </noscript>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        },
+                        accent: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 2s infinite',
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-in': 'slideIn 0.3s ease-out',
+                        'toast-in': 'toastIn 0.3s ease-out',
+                        'toast-out': 'toastOut 0.3s ease-out',
+                        'skeleton': 'skeleton 1.5s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideIn: {
+                            '0%': { opacity: '0', transform: 'translateX(20px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        toastIn: {
+                            '0%': { opacity: '0', transform: 'translateX(100px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        toastOut: {
+                            '0%': { opacity: '1', transform: 'translateX(0)' },
+                            '100%': { opacity: '0', transform: 'translateX(100px)' },
+                        },
+                        skeleton: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.4' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Critical CSS */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Background patterns */
+        .bg-pattern-dots {
+            background-image: radial-gradient(currentColor 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0;
+        }
+
+        .bg-pattern-grid {
+            background-image: linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-pattern-diagonal {
+            background-image: repeating-linear-gradient(45deg, currentColor 0, currentColor 1px, transparent 0, transparent 40px);
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Skip to main content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #9333ea;
+            color: white;
+            padding: 8px 16px;
+            z-index: 100;
+            transition: top 0.3s;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #a855f7;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9333ea;
+        }
+
+        /* Focus styles */
+        *:focus-visible {
+            outline: 2px solid #a855f7;
+            outline-offset: 2px;
+        }
+
+        /* Accordion animations */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+
+        .accordion-content.active {
+            max-height: 600px;
+            opacity: 1;
+        }
+
+        /* Resource card transitions */
+        .resource-card {
+            transition: all 0.3s ease;
+        }
+
+        .resource-card.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            position: absolute;
+            pointer-events: none;
+        }
+
+        /* Quiz option interactions */
+        .quiz-option {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+
+        .quiz-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
+        }
+
+        .quiz-option:focus-visible {
+            outline: 2px solid #a855f7;
+            outline-offset: 2px;
+        }
+
+        .quiz-option.selected {
+            border-color: #a855f7;
+            background-color: #f3e8ff;
+        }
+
+        .dark .quiz-option.selected {
+            background-color: #4c1d95;
+            border-color: #c084fc;
+        }
+
+        /* Scroll to top button */
+        #scrollToTop {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        #scrollToTop.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Badge colors */
+        .badge-articles { background-color: #dbeafe; color: #1e40af; }
+        .badge-videos { background-color: #fce7f3; color: #9d174d; }
+        .badge-books { background-color: #d1fae5; color: #065f46; }
+        .badge-tools { background-color: #fed7aa; color: #9a3412; }
+        .badge-communities { background-color: #e9d5ff; color: #6b21a8; }
+
+        .dark .badge-articles { background-color: #1e3a5f; color: #93c5fd; }
+        .dark .badge-videos { background-color: #4a1942; color: #f9a8d4; }
+        .dark .badge-books { background-color: #064e3b; color: #6ee7b7; }
+        .dark .badge-tools { background-color: #5c2d0e; color: #fdba74; }
+        .dark .badge-communities { background-color: #3b1e6b; color: #c084fc; }
+
+        /* Confetti */
+        .confetti-piece {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -20px;
+            animation: confettiFall 3s ease-in-out forwards;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Skeleton Loading */
+        .skeleton {
+            background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+            background-size: 200% 100%;
+            animation: skeleton 1.5s ease-in-out infinite;
+            border-radius: 0.5rem;
+        }
+
+        .dark .skeleton {
+            background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+            background-size: 200% 100%;
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast {
+            min-width: 300px;
+            max-width: 400px;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            pointer-events: auto;
+            animation: toastIn 0.3s ease-out;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast.success {
+            background-color: #059669;
+            color: white;
+        }
+
+        .toast.error {
+            background-color: #dc2626;
+            color: white;
+        }
+
+        .toast.warning {
+            background-color: #d97706;
+            color: white;
+        }
+
+        .toast.info {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .toast.removing {
+            animation: toastOut 0.3s ease-out forwards;
+        }
+
+        /* Dark mode transitions */
+        body, nav, section, div, button, a, input, select, textarea {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Offline indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 72px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #dc2626;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 0 0 12px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+        .offline-indicator.visible {
+            display: block;
+        }
+
+        /* Touch target sizes for mobile */
+        @media (max-width: 640px) {
+            button, 
+            a.button,
+            .quiz-option,
+            .filter-btn,
+            input[type="checkbox"] {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .nav-link, .mobile-nav-link {
+                padding: 12px 16px;
+            }
+        }
+
+        /* Small screen adjustments */
+        @media (max-width: 380px) {
+            h1 {
+                font-size: 2rem !important;
+            }
+            
+            h2 {
+                font-size: 1.75rem !important;
+            }
+
+            .toast {
+                min-width: auto;
+                max-width: 90vw;
+                font-size: 14px;
+            }
+        }
+
+        /* Screen reader only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+          }
+
+          .confetti-piece {
+            display: none !important;
+          }
+
+          .animate-float,
+          .animate-float-delayed,
+          .animate-fade-in,
+          .animate-slide-in,
+          .animate-toast-in,
+          .animate-toast-out,
+          .animate-skeleton {
+            animation: none !important;
+          }
+
+          .accordion-content {
+            transition: none !important;
+          }
+
+          .resource-card {
+            transition: none !important;
+          }
+
+          .quiz-option {
+            transition: none !important;
+          }
+
+          #scrollToTop {
+            transition: none !important;
+          }
+
+          .toast {
+            animation: none !important;
+          }
+
+          .toast.removing {
+            animation: none !important;
+          }
+
+          body,
+          nav,
+          section,
+          div,
+          button,
+          a,
+          input,
+          select,
+          textarea,
+          .card,
+          .bg-white,
+          .bg-gray-50 {
+            transition: none !important;
+          }
+        }
+        /* Print styles */
+        @media print {
+          nav,
+          .cta-button,
+          #scrollToTop,
+          .toast-container,
+          .offline-indicator,
+          #themeToggle,
+          #mobileMenuBtn,
+          .filter-btn,
+          #resetRoadmap,
+          .quiz-option,
+          #quizStart button,
+          .confetti-piece {
+            display: none !important;
+          }
+
+          .accordion-content {
+            max-height: none !important;
+            opacity: 1 !important;
+            overflow: visible !important;
+          }
+
+          .accordion-content.active {
+            max-height: none !important;
+          }
+
+          body {
+            background: white !important;
+            color: black !important;
+          }
+
+          .dark body {
+            background: white !important;
+            color: black !important;
+          }
+
+          .dark .bg-gray-800,
+          .dark .bg-gray-900,
+          .dark .bg-gray-700 {
+            background: white !important;
+            color: black !important;
+          }
+
+          .dark .text-gray-100,
+          .dark .text-gray-200,
+          .dark .text-gray-300,
+          .dark .text-gray-400 {
+            color: black !important;
+          }
+
+          a[href^="http"]::after {
+            content: " (" attr(href) ")";
+            font-size: 0.75em;
+            color: #666;
+            word-break: break-all;
+          }
+
+          section {
+            page-break-inside: avoid;
+            break-inside: avoid;
+          }
+
+          .resource-card,
+          .bg-white,
+          .bg-gray-50 {
+            box-shadow: none !important;
+            border: 1px solid #ddd !important;
+          }
+
+          h1, h2, h3 {
+            color: black !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
+
+          .badge-articles,
+          .badge-videos,
+          .badge-books,
+          .badge-tools,
+          .badge-communities {
+            border: 1px solid #999 !important;
+            background: none !important;
+            color: black !important;
+          }
+
+          /* Ensure roadmap checkboxes show as checked/unchecked */
+          input[type="checkbox"] {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
+
+          /* Show progress bar in print */
+          #progressBar {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
+        }
+    </style>
+    
+    <!-- JSON-LD Structured Data for FAQ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Do I need to know how to code to become a UI/UX designer?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, you don't need to be a developer to be a UI/UX designer. While understanding basic HTML/CSS can be helpful, most design roles focus on the design process using tools like Figma, Sketch, or Adobe XD."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How long does it take to learn UI/UX?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The timeline varies depending on dedication. Self-taught: 6-12 months (10-15 hours/week). Bootcamp: 3-6 months intensive. University: 2-4 years. Learning is continuous even for experienced designers."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What's the difference between UI and UX?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "UI (User Interface) is the visual design - colors, typography, buttons, layout. UX (User Experience) is how the product works and feels - user journey, ease of use, solving problems. A beautiful chair that's uncomfortable has good UI but poor UX."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="fixed inset-0 bg-white dark:bg-gray-900 z-[10000] flex items-center justify-center transition-opacity duration-500">
+        <div class="relative">
+            <div class="w-16 h-16 border-4 border-purple-200 dark:border-purple-800 rounded-full"></div>
+            <div class="w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
+        </div>
+    </div>
+    
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-link" role="button">Skip to main content</a>
+
+    <!-- Offline Indicator -->
+    <div id="offlineIndicator" class="offline-indicator" role="alert" aria-live="assertive">
+        📡 You are currently offline. Some features may be limited.
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm z-50 transition-all duration-300" role="navigation" aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl" aria-hidden="true">✨</span>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">UIVerse</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8" role="menubar">
+                    <a href="#hero" class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors" role="menuitem">Home</a>
+                    <a href="#what-is-uiux" class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors" role="menuitem">What is UI/UX?</a>
+                    <a href="#roadmap" class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors" role="menuitem">Roadmap</a>
+                    <a href="#quiz" class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors" role="menuitem">Quiz</a>
+                    <a href="#resources" class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors" role="menuitem">Resources</a>
+                    <a href="#faq" class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 transition-colors" role="menuitem">FAQ</a>
+                </div>
+
+                <!-- Theme Toggle & Mobile Menu Button -->
+                <div class="flex items-center space-x-4">
+                    <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors min-w-[44px] min-h-[44px]" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                        <span id="themeIcon" class="text-xl" aria-hidden="true">🌙</span>
+                    </button>
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors min-w-[44px] min-h-[44px]" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path id="menuIconOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path id="menuIconClose" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-700" role="menu" aria-label="Mobile navigation">
+            <div class="px-4 py-3 space-y-3">
+                <a href="#hero" class="mobile-nav-link block py-3 px-4 text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" role="menuitem">Home</a>
+                <a href="#what-is-uiux" class="mobile-nav-link block py-3 px-4 text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" role="menuitem">What is UI/UX?</a>
+                <a href="#roadmap" class="mobile-nav-link block py-3 px-4 text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" role="menuitem">Roadmap</a>
+                <a href="#quiz" class="mobile-nav-link block py-3 px-4 text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" role="menuitem">Quiz</a>
+                <a href="#resources" class="mobile-nav-link block py-3 px-4 text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" role="menuitem">Resources</a>
+                <a href="#faq" class="mobile-nav-link block py-3 px-4 text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" role="menuitem">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16" aria-label="Hero section">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl animate-float" aria-hidden="true"></div>
+            <div class="absolute top-40 right-10 w-72 h-72 bg-indigo-300/30 rounded-full mix-blend-multiply filter blur-xl animate-float-delayed" aria-hidden="true"></div>
+            <div class="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-300/30 rounded-full mix-blend-multiply filter blur-xl animate-float" aria-hidden="true"></div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    Your UI/UX Journey Starts Here
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-10 max-w-3xl mx-auto">
+                    From zero to designing interfaces that users love. No art degree required.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#roadmap" class="cta-button px-8 py-4 bg-purple-600 text-white rounded-full font-semibold hover:bg-purple-700 transform hover:scale-105 transition-all shadow-lg hover:shadow-xl inline-block text-center min-h-[44px]" role="button" aria-label="Start learning - go to roadmap">
+                        🚀 Start Learning
+                    </a>
+                    <a href="#quiz" class="cta-button px-8 py-4 bg-white dark:bg-gray-800 text-purple-600 dark:text-purple-400 rounded-full font-semibold border-2 border-purple-600 hover:bg-purple-50 dark:hover:bg-gray-700 transform hover:scale-105 transition-all inline-block text-center min-h-[44px]" role="button" aria-label="Take the quiz - discover your design personality">
+                        🎯 Take the Quiz
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- What is UI/UX Section -->
+        <section id="what-is-uiux" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto fade-in-section relative" aria-labelledby="what-is-heading">
+            <div class="absolute inset-0 -z-10 opacity-5 dark:opacity-10" aria-hidden="true">
+                <div class="w-full h-full bg-pattern-dots text-purple-200"></div>
+            </div>
+            <h2 id="what-is-heading" class="text-4xl md:text-5xl font-bold text-center mb-16">What is UI/UX?</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <article class="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="text-6xl mb-4" aria-hidden="true">🎨</div>
+                    <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">UI — User Interface</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        UI is the visual design of a product — the buttons users click, the text they read, the images they see, and every visual element they interact with.
+                    </p>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+                        <p class="text-sm font-medium text-purple-600 dark:text-purple-400">
+                            💡 Think of UI as the spoon — it's what you see and touch.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="text-6xl mb-4" aria-hidden="true">🧠</div>
+                    <h3 class="text-2xl font-bold mb-4 text-indigo-600 dark:text-indigo-400">UX — User Experience</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        UX is how a product works and feels — the journey users take, how easy it is to accomplish tasks, and the emotions they experience along the way.
+                    </p>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
+                        <p class="text-sm font-medium text-indigo-600 dark:text-indigo-400">
+                            💡 UX is how good the soup tastes — it's the experience.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Why UI/UX Matters Section -->
+        <section id="why-matters" class="py-20 bg-gray-50 dark:bg-gray-800/50 px-4 sm:px-6 lg:px-8 fade-in-section relative" aria-labelledby="why-matters-heading">
+            <div class="absolute inset-0 -z-10 opacity-5 dark:opacity-10" aria-hidden="true">
+                <div class="w-full h-full bg-pattern-diagonal text-purple-200"></div>
+            </div>
+            <div class="max-w-7xl mx-auto">
+                <h2 id="why-matters-heading" class="text-4xl md:text-5xl font-bold text-center mb-16">Why UI/UX Matters</h2>
+                
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 text-center">
+                        <div class="text-4xl mb-3" aria-hidden="true">📊</div>
+                        <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                            <span class="counter" data-target="88">0</span>%
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">of users won't return after a bad experience</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 text-center">
+                        <div class="text-4xl mb-3" aria-hidden="true">💰</div>
+                        <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">
+                            $<span class="counter" data-target="9900">0</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">ROI for every $1 invested in UX</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 text-center">
+                        <div class="text-4xl mb-3" aria-hidden="true">⏱️</div>
+                        <div class="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-2">
+                            <span class="counter" data-target="5">0</span>s
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">to make a first impression on users</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 text-center">
+                        <div class="text-4xl mb-3" aria-hidden="true">📱</div>
+                        <div class="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                            <span class="counter" data-target="74">0</span>%
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">of users judge credibility based on design</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border-l-4 border-red-500">
+                        <h3 class="text-xl font-bold mb-4 text-red-600 dark:text-red-400">❌ Bad Design</h3>
+                        <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-start"><span class="mr-2">•</span> Cluttered layout with no clear hierarchy</li>
+                            <li class="flex items-start"><span class="mr-2">•</span> Confusing navigation</li>
+                            <li class="flex items-start"><span class="mr-2">•</span> Inconsistent colors and typography</li>
+                            <li class="flex items-start"><span class="mr-2">•</span> Slow loading times and broken links</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border-l-4 border-green-500">
+                        <h3 class="text-xl font-bold mb-4 text-green-600 dark:text-green-400">✅ Good Design</h3>
+                        <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-start"><span class="mr-2">•</span> Clean, intuitive layout with visual hierarchy</li>
+                            <li class="flex items-start"><span class="mr-2">•</span> Clear and predictable navigation</li>
+                            <li class="flex items-start"><span class="mr-2">•</span> Consistent design system</li>
+                            <li class="flex items-start"><span class="mr-2">•</span> Fast performance and seamless interactions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Roadmap Section -->
+        <section id="roadmap" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto fade-in-section relative" aria-labelledby="roadmap-heading">
+            <div class="absolute inset-0 -z-10 opacity-5 dark:opacity-10" aria-hidden="true">
+                <div class="w-full h-full bg-pattern-grid text-purple-200"></div>
+            </div>
+            <h2 id="roadmap-heading" class="text-4xl md:text-5xl font-bold text-center mb-4">Your Path to Becoming a UI/UX Designer</h2>
+            <p class="text-center text-gray-600 dark:text-gray-300 mb-8">Click each step to learn more and track your progress</p>
+            
+            <div class="mb-8" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Roadmap progress">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Progress</span>
+                    <span id="progressPercentage" class="text-sm font-bold text-purple-600 dark:text-purple-400">0%</span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+                    <div id="progressBar" class="bg-gradient-to-r from-purple-600 to-indigo-600 h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div id="roadmapSteps" class="space-y-4">
+                <!-- Generated by roadmap.js -->
+            </div>
+
+            <div class="text-center mt-8">
+                <button id="resetRoadmap" class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-all min-h-[44px]">
+                    Reset Progress
+                </button>
+            </div>
+        </section>
+
+        <!-- Resource Library Section -->
+        <section id="resources" class="py-20 bg-gray-50 dark:bg-gray-800/50 px-4 sm:px-6 lg:px-8 fade-in-section relative" aria-labelledby="resources-heading">
+            <div class="absolute inset-0 -z-10 opacity-5 dark:opacity-10" aria-hidden="true">
+                <div class="w-full h-full bg-pattern-dots text-purple-200"></div>
+            </div>
+            <div class="max-w-7xl mx-auto">
+                <h2 id="resources-heading" class="text-4xl md:text-5xl font-bold text-center mb-4">Resource Library</h2>
+                <p class="text-center text-gray-600 dark:text-gray-300 mb-8">Curated resources to accelerate your learning</p>
+                
+                <!-- Search Bar -->
+                <div class="max-w-xl mx-auto mb-8 relative">
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true">🔍</span>
+                        <input type="text" 
+                               id="resourceSearch" 
+                               class="w-full pl-12 pr-12 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-full bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 outline-none transition-colors min-h-[48px]"
+                               placeholder="Search resources..."
+                               aria-label="Search resources">
+                        <button id="clearSearch" 
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hidden min-h-[24px] min-w-[24px]"
+                                aria-label="Clear search">
+                            ✕
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-3 mb-12" role="group" aria-label="Filter resources by category">
+                    <button class="filter-btn active px-6 py-2 bg-purple-600 text-white rounded-full font-medium hover:bg-purple-700 transition-all min-h-[44px]" data-category="all" aria-pressed="true">All</button>
+                    <button class="filter-btn px-6 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-purple-50 dark:hover:bg-gray-700 transition-all border dark:border-gray-600 min-h-[44px]" data-category="articles" aria-pressed="false">📄 Articles</button>
+                    <button class="filter-btn px-6 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-purple-50 dark:hover:bg-gray-700 transition-all border dark:border-gray-600 min-h-[44px]" data-category="videos" aria-pressed="false">🎥 Videos</button>
+                    <button class="filter-btn px-6 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-purple-50 dark:hover:bg-gray-700 transition-all border dark:border-gray-600 min-h-[44px]" data-category="books" aria-pressed="false">📚 Books</button>
+                    <button class="filter-btn px-6 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-purple-50 dark:hover:bg-gray-700 transition-all border dark:border-gray-600 min-h-[44px]" data-category="tools" aria-pressed="false">🛠️ Tools</button>
+                    <button class="filter-btn px-6 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-purple-50 dark:hover:bg-gray-700 transition-all border dark:border-gray-600 min-h-[44px]" data-category="communities" aria-pressed="false">👥 Communities</button>
+                    <button class="filter-btn px-6 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-purple-50 dark:hover:bg-gray-700 transition-all border dark:border-gray-600 min-h-[44px]" data-category="saved" aria-pressed="false">⭐ Saved</button>
+                </div>
+
+                <div id="resourcesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Generated by resources.js -->
+                </div>
+
+                <div id="noResults" class="hidden text-center py-12">
+                    <p class="text-2xl mb-2">🔍</p>
+                    <p class="text-gray-600 dark:text-gray-300">No resources found in this category.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personality Quiz Section -->
+        <section id="quiz" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto fade-in-section" aria-labelledby="quiz-heading">
+            <h2 id="quiz-heading" class="text-4xl md:text-5xl font-bold text-center mb-4">What Type of Designer Are You?</h2>
+            <p class="text-center text-gray-600 dark:text-gray-300 mb-8">Take this quick quiz to discover your design personality</p>
+            
+            <div id="quizContainer" class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+                <!-- Generated by quiz.js -->
+            </div>
+        </section>
+
+        <!-- Design Exercises Section -->
+        <section id="exercises" class="py-20 bg-gray-50 dark:bg-gray-800/50 px-4 sm:px-6 lg:px-8 fade-in-section" aria-labelledby="exercises-heading">
+          <div class="max-w-4xl mx-auto">
+            <h2 id="exercises-heading" class="text-4xl md:text-5xl font-bold text-center mb-4">Practice Your Eye</h2>
+            <p class="text-center text-gray-600 dark:text-gray-300 mb-12">Quick interactive exercises to sharpen your design skills</p>
+            
+            <!-- Exercise 1: Color Contrast -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8">
+              <h3 class="text-2xl font-bold mb-4">🎨 Color Contrast Checker</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-6">Enter two hex colors to check if they meet WCAG accessibility standards.</p>
+              
+               <div class="grid sm:grid-cols-2 gap-6 mb-6">
+                 <div>
+                   <label class="block text-sm font-medium mb-2" for="contrastText">Text Color</label>
+                   <div class="flex items-center space-x-3">
+                     <input type="color" id="contrastText" value="#000000" class="w-12 h-12 rounded-lg cursor-pointer" aria-label="Text color picker">
+                     <input type="text" id="contrastTextHex" value="#000000" maxlength="7" class="flex-1 px-4 py-2 border-2 border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none uppercase font-mono" aria-label="Text color hex">
+                   </div>
+                 </div>
+                 <div>
+                   <label class="block text-sm font-medium mb-2" for="contrastBg">Background Color</label>
+                   <div class="flex items-center space-x-3">
+                     <input type="color" id="contrastBg" value="#ffffff" class="w-12 h-12 rounded-lg cursor-pointer" aria-label="Background color picker">
+                     <input type="text" id="contrastBgHex" value="#ffffff" maxlength="7" class="flex-1 px-4 py-2 border-2 border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none uppercase font-mono" aria-label="Background color hex">
+                   </div>
+                 </div>
+               </div>
+               
+               <div class="flex flex-wrap justify-center gap-3 mb-6">
+                 <button id="swapColors" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors min-h-[44px]" aria-label="Swap text and background colors">
+                   ⇄ Swap
+                 </button>
+                 <button id="randomColors" class="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors min-h-[44px]" aria-label="Generate random colors">
+                   🎲 Random
+                 </button>
+                 <button id="copyColors" class="px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-lg hover:bg-indigo-200 dark:hover:bg-indigo-900/50 transition-colors min-h-[44px]" aria-label="Copy color values to clipboard">
+                   📋 Copy
+                 </button>
+               </div>
+               
+               <div id="contrastPreview" class="rounded-xl p-8 text-center mb-6 transition-all duration-300 shadow-inner" style="background-color: #ffffff; color: #000000;">
+                 <p class="text-2xl font-bold">The quick brown fox jumps over the lazy dog</p>
+                 <p class="text-lg mt-2">Pack my box with five dozen liquor jugs</p>
+               </div>
+               
+               <div id="contrastResults" class="grid sm:grid-cols-2 gap-4">
+                 <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-5 text-center">
+                   <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Contrast Ratio</p>
+                   <p id="contrastRatio" class="text-4xl font-bold text-gray-800 dark:text-gray-200">21.00</p>
+                 </div>
+                 <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-5 text-center">
+                   <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">WCAG Rating</p>
+                   <p id="contrastRating" class="text-3xl font-bold text-green-600 px-4 py-2 rounded-lg bg-green-100 dark:bg-green-900/30">AAA ✓</p>
+                 </div>
+               </div>
+             </div>
+
+            <!-- Exercise 2: Typography Scale Generator -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8">
+              <h3 class="text-2xl font-bold mb-4">🔤 Typography Scale Generator</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-6">Create a modular typography scale for your designs.</p>
+              
+              <div class="grid sm:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label class="block text-sm font-medium mb-2" for="baseFontSize">Base Font Size (px)</label>
+                  <input type="number" id="baseFontSize" value="16" min="12" max="24" class="w-full px-4 py-2 border-2 border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none" aria-label="Base font size in pixels">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium mb-2" for="scaleRatio">Scale Ratio</label>
+                  <select id="scaleRatio" class="w-full px-4 py-2 border-2 border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none" aria-label="Scale ratio for typography">
+                    <option value="1.25">Minor Second (1.25)</option>
+                    <option value="1.33">Major Second (1.33)</option>
+                    <option value="1.414" selected>Perfect Fourth (1.414)</option>
+                    <option value="1.5">Major Third (1.5)</option>
+                    <option value="1.618">Golden Ratio (1.618)</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div id="typographyPreview" class="space-y-3 mb-6">
+                <!-- Generated by exercises.js -->
+              </div>
+              
+              <div class="flex justify-center space-x-3">
+                <button id="copyTypography" class="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors min-h-[44px]" aria-label="Copy typography scale to clipboard">
+                  📋 Copy CSS
+                </button>
+              </div>
+            </div>
+
+            <!-- Exercise 2: Spot the UX Issue -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+              <h3 class="text-2xl font-bold mb-4">🔍 Spot the UX Issue</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-6">Which of these two designs has better usability? Click the better one.</p>
+              
+              <div class="grid sm:grid-cols-2 gap-8" id="uxExerciseContainer">
+                <!-- Generated by exercises.js -->
+              </div>
+              
+              <div id="uxExerciseFeedback" class="mt-6 hidden">
+                <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-6">
+                  <p class="text-green-800 dark:text-green-200 font-semibold text-lg mb-2" id="uxFeedbackTitle">Correct! 🎉</p>
+                  <p class="text-green-700 dark:text-green-300" id="uxFeedbackText">The left button uses proper contrast and clear labeling.</p>
+                </div>
+                <button onclick="nextUXExercise()" class="mt-4 px-6 py-3 bg-purple-600 text-white rounded-full font-semibold hover:bg-purple-700 transition-all min-h-[44px]">
+                  Next Exercise →
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 bg-gray-50 dark:bg-gray-800/50 px-4 sm:px-6 lg:px-8 fade-in-section" aria-labelledby="faq-heading">
+            <div class="max-w-4xl mx-auto">
+                <h2 id="faq-heading" class="text-4xl md:text-5xl font-bold text-center mb-16">Frequently Asked Questions</h2>
+                
+                <div id="faqContainer" class="space-y-4">
+                    <!-- Generated by accordion.js -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl" aria-hidden="true">✨</span>
+                        <span class="text-2xl font-bold">UIVerse</span>
+                    </div>
+                    <p class="text-gray-400">Your journey to becoming a UI/UX designer starts here.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#what-is-uiux" class="hover:text-purple-400 transition-colors">What is UI/UX?</a></li>
+                        <li><a href="#roadmap" class="hover:text-purple-400 transition-colors">Learning Roadmap</a></li>
+                        <li><a href="#quiz" class="hover:text-purple-400 transition-colors">Designer Quiz</a></li>
+                        <li><a href="#resources" class="hover:text-purple-400 transition-colors">Resources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <p class="text-gray-400 mb-2">Built with ❤️ for aspiring designers</p>
+                    <p class="text-gray-400">Inspired by the UI/UX community</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 UIVerse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-8 right-8 p-4 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 transform hover:scale-110 transition-all z-40 min-w-[44px] min-h-[44px]" aria-label="Scroll to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+        </svg>
+    </button>
+
+    <!-- IMPORTANT: Scripts loaded in correct order -->
+    <script src="js/utils.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/roadmap.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/resources.js"></script>
+    <script src="js/accordion.js"></script>
+    <script src="js/exercises.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('js/sw.js').then(function(registration) {
+                    console.log('ServiceWorker registered with scope:', registration.scope);
+                }).catch(function(error) {
+                    console.log('ServiceWorker registration failed:', error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

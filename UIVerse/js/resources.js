@@ -67,7 +67,7 @@ function getFallbackResourcesData() {
       title: 'Figma YouTube Channel',
       description: 'Official tutorials, design tips, and community showcases from the Figma team.',
       category: 'videos',
-      url: 'https://www.youtube.com/c/Figma',
+      url: 'https://www.youtube.com/@Figma',
       badge: 'Videos',
       icon: '🎥'
     },
@@ -76,7 +76,7 @@ function getFallbackResourcesData() {
       title: 'Flux Academy',
       description: 'Web design tutorials and career advice for aspiring designers on YouTube.',
       category: 'videos',
-      url: 'https://www.youtube.com/c/FluxAcademy',
+      url: 'https://www.youtube.com/@FluxAcademy',
       badge: 'Videos',
       icon: '🎥'
     },
@@ -296,12 +296,12 @@ function renderResources(filter = 'all', searchQuery = '') {
         <a href="${sanitizeURL(resource.url)}" 
            target="_blank" 
            rel="noopener noreferrer"
-           class="inline-flex items-center text-purple-600 dark:text-purple-400 hover:underline font-medium focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded px-2 py-1"
+           class="inline-flex items-center px-4 py-2 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/30 font-medium transition-all min-h-[44px] focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
            aria-label="Visit ${sanitizeHTML(resource.title)} (opens in new tab)">
-          Visit Resource
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
           </svg>
+          Visit Resource
         </a>
       </div>
     `}).join('');
@@ -340,19 +340,6 @@ function setupSaveButtons() {
     
     saveBtn.setAttribute('aria-pressed', newSaved);
     saveBtn.setAttribute('aria-label', newSaved ? 'Remove from saved' : 'Save resource');
-    
-    // Show toast
-    const resource = resourcesData.find(r => r.id === resourceId);
-    const title = resource ? resource.title : 'Resource';
-    if (newSaved) {
-      if (typeof toast !== 'undefined' && toast.success) {
-        toast.success(`⭐ "${title}" saved!`, 2000);
-      }
-    } else {
-      if (typeof toast !== 'undefined' && toast.info) {
-        toast.info(`Removed "${title}" from saved`, 2000);
-      }
-    }
     
     // If viewing saved filter, re-render to remove unsaved item
     if (currentFilter === 'saved') {

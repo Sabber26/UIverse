@@ -152,7 +152,7 @@ function isValidURL(url) {
  * @returns {string} Unique ID
  */
 function generateId() {
-  return 'id-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now().toString(36);
+  return 'id-' + Math.random().toString(36).substring(2, 11) + '-' + Date.now().toString(36);
 }
 
 /**

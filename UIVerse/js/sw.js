@@ -5,16 +5,18 @@
 
 const CACHE_NAME = 'uiverse-cache-v1';
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/js/main.js',
-  '/js/roadmap.js',
-  '/js/quiz.js',
-  '/js/resources.js',
-  '/js/accordion.js',
-  '/js/exercises.js',
-  '/js/utils.js',
-  '/js/toast.js',
+  'index.html',
+  'js/main.js',
+  'js/roadmap.js',
+  'js/quiz.js',
+  'js/resources.js',
+  'js/accordion.js',
+  'js/exercises.js',
+  'js/utils.js',
+  'js/toast.js',
+  'data/manifest.json',
+  'data/faq.json',
+  'data/resources.json',
   'https://cdn.tailwindcss.com',
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap'
 ];
@@ -66,7 +68,15 @@ self.addEventListener('fetch', (event) => {
   // Skip cross-origin requests except for Google Fonts and CDN
   const url = new URL(event.request.url);
   
-  if (!url.origin.includes(location.origin) && 
+  // In service worker, we need to check if the request is for our own origin
+  // by checking if it's a relative URL or matches our expected domains
+  const isOwnOrigin = url.origin === self.registration.scope || 
+                      url.pathname.startsWith('/js/') ||
+                      url.pathname.startsWith('/data/') ||
+                      url.pathname === '/' ||
+                      url.pathname === '/index.html';
+  
+  if (!isOwnOrigin && 
       !url.origin.includes('fonts.googleapis.com') && 
       !url.origin.includes('cdn.tailwindcss.com')) {
     return;
@@ -103,7 +113,7 @@ self.addEventListener('fetch', (event) => {
           .catch(() => {
             // Return offline fallback for navigation requests
             if (event.request.mode === 'navigate') {
-              return caches.match('/index.html');
+              return caches.match('index.html');
             }
             
             // For other requests, just fail silently

@@ -77,6 +77,24 @@ const quizQuestions = [
       { text: 'Running usability tests to uncover user pain points', category: 'research' },
       { text: 'Leading a full redesign from research to final UI', category: 'hybrid' }
     ]
+  },
+  {
+    question: 'How do you handle feedback on your designs?',
+    options: [
+      { text: 'I love visual feedback and seeing my designs come to life', category: 'visual' },
+      { text: 'I focus on whether the solution actually works for users', category: 'problem_solving' },
+      { text: 'I want to understand the user data behind the feedback', category: 'research' },
+      { text: 'I balance all perspectives to create the best overall solution', category: 'hybrid' }
+    ]
+  },
+  {
+    question: 'What\'s your approach to design systems?',
+    options: [
+      { text: 'Creating beautiful, consistent visual components', category: 'visual' },
+      { text: 'Building flexible, functional component structures', category: 'problem_solving' },
+      { text: 'Ensuring components meet real user needs', category: 'research' },
+      { text: 'Designing comprehensive systems that cover everything', category: 'hybrid' }
+    ]
   }
 ];
 
@@ -120,10 +138,10 @@ function renderQuiz() {
     return;
   }
 
-  container.innerHTML = `
+container.innerHTML = `
     <div id="quizStart" class="animate-fade-in">
       <h3 class="text-2xl font-bold mb-4 text-center">Discover Your Design Personality</h3>
-      <p class="text-gray-600 dark:text-gray-300 text-center mb-8">Answer 5 questions to find out what type of designer you are.</p>
+      <p class="text-gray-600 dark:text-gray-300 text-center mb-8">Answer ${quizQuestions.length} questions to find out what type of designer you are.</p>
       <div class="text-center">
         <button onclick="startQuiz()" 
                 class="px-8 py-4 bg-purple-600 text-white rounded-full font-semibold hover:bg-purple-700 transform hover:scale-105 transition-all min-h-[44px] focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
@@ -147,9 +165,6 @@ function startQuiz() {
   url.searchParams.delete('result');
   window.history.replaceState(null, '', url);
   showQuestion();
-  if (typeof toast !== 'undefined' && toast.info) {
-    toast.info('Quiz started! Choose your answers honestly for the best results.', 3000);
-  }
 }
 
 /**
@@ -373,10 +388,6 @@ function renderResult(dominantCategory) {
       </div>
     </div>
   `;
-
-  if (typeof toast !== 'undefined' && toast.success) {
-    toast.success(`You're ${persona.role}! 🎉`, 4000);
-  }
 }
 
 /**
@@ -394,18 +405,10 @@ function shareResults(personaType) {
       text: shareText,
       url: shareUrl,
     }).catch(() => {
-      copyToClipboard(shareText + ' ' + shareUrl).then(success => {
-        if (success && typeof toast !== 'undefined') {
-          toast.success('Results copied to clipboard!', 3000);
-        }
-      });
+      copyToClipboard(shareText + ' ' + shareUrl);
     });
   } else {
-    copyToClipboard(shareText + ' ' + shareUrl).then(success => {
-      if (success && typeof toast !== 'undefined') {
-        toast.success('Results copied to clipboard!', 3000);
-      }
-    });
+    copyToClipboard(shareText + ' ' + shareUrl);
   }
 }
 
@@ -415,11 +418,7 @@ function shareResults(personaType) {
  */
 function copyResultLink(personaType) {
   const shareUrl = `${window.location.origin}${window.location.pathname}?result=${personaType}`;
-  copyToClipboard(shareUrl).then(success => {
-    if (success && typeof toast !== 'undefined') {
-      toast.success('Link copied! Share it with friends.', 3000);
-    }
-  });
+  copyToClipboard(shareUrl);
 }
 
 /**
